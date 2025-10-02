@@ -1,4 +1,4 @@
-# Dependency Guardian
+# Vulnguard
 
 > Multi-language dependency security scanner and health monitor. Catch vulnerabilities before they catch you.
 
@@ -7,7 +7,7 @@
 
 ## Overview
 
-Dependency Guardian is a powerful CLI tool that scans your project dependencies across multiple package managers (npm, Maven, Gradle) and checks them against vulnerability databases to identify security issues before they reach production.
+Vulnguard is a powerful CLI tool that scans your project dependencies across multiple package managers (npm, Maven, Gradle) and checks them against vulnerability databases to identify security issues before they reach production.
 
 ## Features
 
@@ -23,12 +23,12 @@ Dependency Guardian is a powerful CLI tool that scans your project dependencies 
 
 ### Global Installation
 ```bash
-npm install -g dependency-guardian
+npm install -g vulnguard
 ```
 
 ### Using npx (No Installation Required)
 ```bash
-npx dependency-guardian scan
+npx vulnguard scan
 ```
 
 ### Local Development
@@ -44,24 +44,24 @@ npm run build
 ### Basic Scan
 Scan the current directory:
 ```bash
-dependency-guardian scan
+vulnguard scan
 ```
 
 ### Scan Specific File
 ```bash
-dependency-guardian scan /path/to/package.json
-dependency-guardian scan /path/to/pom.xml
+vulnguard scan /path/to/package.json
+vulnguard scan /path/to/pom.xml
 ```
 
 ### Scan Entire Project
 ```bash
-dependency-guardian scan /path/to/project
+vulnguard scan /path/to/project
 ```
 
 ### Options
 
 ```bash
-dependency-guardian scan [options] [path]
+vulnguard scan [options] [path]
 
 Options:
   -f, --format <type>    Output format: console, json, markdown (default: "console")
@@ -75,29 +75,29 @@ Options:
 
 **Verbose console output:**
 ```bash
-dependency-guardian scan . --verbose
+vulnguard scan . --verbose
 ```
 
 **Generate JSON report:**
 ```bash
-dependency-guardian scan . --format json --output report.json
+vulnguard scan . --format json --output report.json
 ```
 
 **Generate Markdown report:**
 ```bash
-dependency-guardian scan . --format markdown --output SECURITY.md
+vulnguard scan . --format markdown --output SECURITY.md
 ```
 
 **Include dev dependencies:**
 ```bash
-dependency-guardian scan . --dev --verbose
+vulnguard scan . --dev --verbose
 ```
 
 ## Output Example
 
 ```
 ══════════════════════════════════════════════════════════════════════
-  Dependency Guardian - Security Scan Report
+  Vulnguard - Security Scan Report
 ══════════════════════════════════════════════════════════════════════
 
 Scan Time: 10/2/2025, 2:25:02 PM

@@ -16,7 +16,7 @@ export class MarkdownReporter {
   private generateMarkdown(report: Report): string {
     const lines: string[] = [];
 
-    lines.push('# Dependency Guardian - Security Scan Report');
+    lines.push('# Vulnguard - Security Scan Report');
     lines.push('');
     lines.push(`**Scan Time:** ${new Date(report.timestamp).toLocaleString()}`);
     lines.push(`**Project:** ${report.projectPath}`);
