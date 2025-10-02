@@ -1,11 +1,11 @@
 {
-  "name": "dependency-guardian",
+  "name": "vulnguard",
   "version": "0.1.0",
   "description": "Multi-language dependency security scanner and health monitor",
   "main": "dist/index.js",
   "bin": {
-    "dependency-guardian": "dist/cli.js",
-    "dg": "dist/cli.js"
+    "vulnguard": "dist/cli.js",
+    "vg": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc",

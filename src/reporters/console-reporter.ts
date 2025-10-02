@@ -5,7 +5,7 @@ import { Report, ScanResult } from '../types';
 export class ConsoleReporter {
   report(report: Report, verbose: boolean = false): void {
     console.log('\n' + chalk.bold.cyan('═'.repeat(70)));
-    console.log(chalk.bold.cyan('  Dependency Guardian - Security Scan Report'));
+    console.log(chalk.bold.cyan('  Vulnguard - Security Scan Report'));
     console.log(chalk.bold.cyan('═'.repeat(70)) + '\n');
 
     console.log(chalk.gray(`Scan Time: ${new Date(report.timestamp).toLocaleString()}`));

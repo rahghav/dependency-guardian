@@ -14,7 +14,7 @@ import { FileFinder } from './utils/file-finder';
 const program = new Command();
 
 program
-  .name('dependency-guardian')
+  .name('vulnguard')
   .description('Multi-language dependency security scanner and health monitor')
   .version('0.1.0');
 
@@ -122,7 +122,7 @@ program
   .command('version')
   .description('Show version information')
   .action(() => {
-    console.log('dependency-guardian v0.1.0');
+    console.log('vulnguard v0.1.0');
   });
 
 program.parse();
