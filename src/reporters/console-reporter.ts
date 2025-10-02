@@ -57,11 +57,36 @@ export class ConsoleReporter {
   }
 
   private printScanResult(result: ScanResult, verbose: boolean): void {
-    const { dependency, vulnerabilities, healthScore } = result;
+    const { dependency, vulnerabilities, healthScore, trustScore, healthMetrics } = result;
 
     console.log(chalk.bold(`\n📦 ${dependency.name}@${dependency.version}`));
-    console.log(chalk.gray(`   Ecosystem: ${dependency.ecosystem} | Health Score: ${this.getHealthColor(healthScore)}${healthScore}/100${chalk.reset()}`));
 
+    // Display trust score if available
+    if (trustScore) {
+      const trustBadge = this.getTrustBadge(trustScore.category);
+      const trustColor = this.getTrustColor(trustScore.overall);
+      console.log(chalk.gray(`   Ecosystem: ${dependency.ecosystem} | Trust Score: ${trustColor}${trustScore.overall}/100${chalk.reset()} ${trustBadge}`));
+
+      // Show breakdown in verbose mode
+      if (verbose && trustScore) {
+        console.log(chalk.gray(`   ├─ Security: ${trustScore.breakdown.security}/100`));
+        console.log(chalk.gray(`   ├─ Maintenance: ${trustScore.breakdown.maintenance}/100`));
+        console.log(chalk.gray(`   ├─ Community: ${trustScore.breakdown.community}/100`));
+        console.log(chalk.gray(`   └─ Vulnerability Track: ${trustScore.breakdown.vulnerabilityTrack}/100`));
+
+        // Show key reasons
+        if (trustScore.reasons.length > 0) {
+          console.log(chalk.yellow(`   📊 Key Insights:`));
+          trustScore.reasons.slice(0, 3).forEach(reason => {
+            console.log(chalk.gray(`      • ${reason}`));
+          });
+        }
+      }
+    } else {
+      console.log(chalk.gray(`   Ecosystem: ${dependency.ecosystem} | Health Score: ${this.getHealthColor(healthScore)}${healthScore}/100${chalk.reset()}`));
+    }
+
+    // Display vulnerabilities
     for (const vuln of vulnerabilities) {
       const severityBadge = this.getSeverityBadge(vuln.severity);
       console.log(`\n   ${severityBadge} ${chalk.bold(vuln.id)}`);
@@ -75,6 +100,14 @@ export class ConsoleReporter {
           console.log(chalk.gray(`   Reference: ${vuln.references[0]}`));
         }
       }
+    }
+
+    // Show alternatives if available
+    if (result.alternatives && result.alternatives.length > 0 && verbose) {
+      console.log(chalk.cyan(`\n   🔄 Safer Alternatives:`));
+      result.alternatives.forEach(alt => {
+        console.log(chalk.gray(`      • ${alt.name} (Trust Score: ${alt.trustScore}/100) - ${alt.reason}`));
+      });
     }
   }
 
@@ -125,5 +158,22 @@ export class ConsoleReporter {
     } else {
       return chalk.red.bold('✗ ' + scoreText + ' - Poor');
     }
+  }
+
+  private getTrustBadge(category: 'trusted' | 'moderate' | 'high-risk'): string {
+    switch (category) {
+      case 'trusted':
+        return chalk.green.bold('✓ TRUSTED');
+      case 'moderate':
+        return chalk.yellow.bold('⚠ MODERATE');
+      case 'high-risk':
+        return chalk.red.bold('✗ HIGH RISK');
+    }
+  }
+
+  private getTrustColor(score: number): string {
+    if (score >= 80) return chalk.green.bold('');
+    if (score >= 50) return chalk.yellow.bold('');
+    return chalk.red.bold('');
   }
 }

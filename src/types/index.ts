@@ -16,10 +16,70 @@ export interface Vulnerability {
   fixedVersions?: string[];
 }
 
+export interface OpenSSFScore {
+  score: number; // 0-10
+  checks: {
+    branchProtection?: number;
+    codeReview?: number;
+    maintained?: number;
+    ciTests?: number;
+    securityPolicy?: number;
+    dependencyUpdateTool?: number;
+    fuzzing?: number;
+    sast?: number;
+    dangerousWorkflow?: number;
+    tokenPermissions?: number;
+  };
+}
+
+export interface HealthMetrics {
+  ossf?: OpenSSFScore;
+  maintenance: {
+    lastUpdateDays: number;
+    commitFrequency: 'high' | 'medium' | 'low' | 'abandoned';
+    hasRecentRelease: boolean;
+  };
+  community: {
+    weeklyDownloads?: number;
+    contributors?: number;
+    openIssues?: number;
+    stars?: number;
+  };
+  vulnerabilityHistory: {
+    totalVulnerabilities: number;
+    criticalCount: number;
+    averagePatchTimeDays?: number;
+  };
+}
+
+export interface TrustScore {
+  overall: number; // 0-100
+  category: 'trusted' | 'moderate' | 'high-risk';
+  breakdown: {
+    security: number; // 0-100
+    maintenance: number; // 0-100
+    community: number; // 0-100
+    vulnerabilityTrack: number; // 0-100
+  };
+  reasons: string[];
+}
+
+export interface AlternativePackage {
+  name: string;
+  version: string;
+  trustScore: number;
+  reason: string;
+  ecosystem: string;
+  compatibility: 'drop-in' | 'similar' | 'different-api';
+}
+
 export interface ScanResult {
   dependency: Dependency;
   vulnerabilities: Vulnerability[];
-  healthScore: number; // 0-100
+  healthScore: number; // 0-100 (deprecated, use trustScore instead)
+  trustScore?: TrustScore;
+  healthMetrics?: HealthMetrics;
+  alternatives?: AlternativePackage[];
 }
 
 export interface Report {
