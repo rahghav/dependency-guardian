@@ -33,7 +33,7 @@ npx dependency-guardian scan
 
 ### Local Development
 ```bash
-git clone https://github.com/yourusername/dependency-guardian.git
+git clone https://github.com/racha24/dependency-guardian.git
 cd dependency-guardian
 npm install
 npm run build
@@ -224,8 +224,8 @@ Apache 2.0 - see [LICENSE](LICENSE) file for details.
 
 ## Support
 
-- Report issues: [GitHub Issues](https://github.com/yourusername/dependency-guardian/issues)
-- Documentation: [Wiki](https://github.com/yourusername/dependency-guardian/wiki)
+- Report issues: [GitHub Issues](https://github.com/racha24/dependency-guardian/issues)
+- Documentation: [Wiki](https://github.com/racha24/dependency-guardian/wiki)
 
 ## Acknowledgments
 

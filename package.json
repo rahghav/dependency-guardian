@@ -28,16 +28,16 @@
     "gradle",
     "python"
   ],
-  "author": "",
+  "author": "Raghav",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/dependency-guardian.git"
+    "url": "git+https://github.com/racha24/dependency-guardian.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/dependency-guardian/issues"
+    "url": "https://github.com/racha24/dependency-guardian/issues"
   },
-  "homepage": "https://github.com/yourusername/dependency-guardian#readme",
+  "homepage": "https://github.com/racha24/dependency-guardian#readme",
   "engines": {
     "node": ">=16.0.0"
   },
