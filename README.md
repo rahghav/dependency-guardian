@@ -11,11 +11,24 @@ Vulnguard is a powerful CLI tool that scans your project dependencies across mul
 
 ## Features
 
+### 🚀 NEW in v0.2.0: Dependency Health Intelligence System
+**The ONLY scanner that goes beyond CVEs!**
+
+- **🎯 Trust Score System**: Comprehensive 0-100 scoring across 4 dimensions
+  - Security (OpenSSF Scorecard integration)
+  - Maintenance (Update frequency & activity)
+  - Community (Downloads, stars, adoption)
+  - Vulnerability Track (Historical security)
+- **🔍 OpenSSF Scorecard Integration**: Industry-first for npm scanners - analyzes security best practices
+- **💡 Intelligent Insights**: Auto-generated explanations like "Actively maintained with 70.3M weekly downloads"
+- **🎨 Visual Trust Badges**: ✓ TRUSTED, ⚠ MODERATE, ✗ HIGH RISK
+
+### Core Features
+
 - **Multi-Language Support**: Scan npm (package.json), Maven (pom.xml), and Gradle (build.gradle) projects
 - **CVE Detection**: Integration with OSV (Open Source Vulnerabilities) database for real-time vulnerability checking
 - **Beautiful CLI Output**: Color-coded security scores and severity indicators
 - **Multiple Report Formats**: Generate reports in JSON, Markdown, or interactive console format
-- **Health Scoring**: Each dependency gets a health score (0-100) based on vulnerabilities
 - **Batch Scanning**: Scan entire project directories automatically
 - **Fast & Lightweight**: Written in TypeScript with minimal dependencies
 
@@ -117,7 +130,14 @@ Project: /Users/user/my-project
 ⚠ Found 3 vulnerable dependencies:
 
 📦 axios@1.6.2
-   Ecosystem: npm | Health Score: 80/100
+   Ecosystem: npm | Trust Score: 76/100 ⚠ MODERATE
+   ├─ Security: 50/100
+   ├─ Maintenance: 100/100
+   ├─ Community: 85/100
+   └─ Vulnerability Track: 85/100
+   📊 Key Insights:
+      • Actively maintained with frequent updates
+      • Widely used (70.3M weekly downloads)
 
     HIGH  GHSA-8hc4-vh64-cxmj
    Server-Side Request Forgery in axios
